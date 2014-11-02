@@ -1,0 +1,57 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="IssueApp.Frontend.MainWindow"
+        Title="Issue Management System" Height="629.9" Width="775" Closing="Window_Closing">
+    <Grid>
+        <Grid Margin="0,0,355,0">
+            <Label Content="Issues" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <ListView x:Name="IssueList" Margin="10,38,10,306" SelectionChanged="IssueList_SelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Title" Width="120" DisplayMemberBinding="{Binding Title}"/>
+                        <GridViewColumn Header="Reported" Width="100" DisplayMemberBinding="{Binding ReportedAt}"/>
+                        <GridViewColumn Header="Completed" Width="100" DisplayMemberBinding="{Binding CompletedAt}"/>
+                        <GridViewColumn Header="Priority" Width="60" DisplayMemberBinding="{Binding Priority}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Label Content="Title" HorizontalAlignment="Left" Margin="10,0,0,278" VerticalAlignment="Bottom"/>
+            <TextBox x:Name="TitleBox" Height="23" Margin="10,0,10,250" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
+            <Label Content="Description" HorizontalAlignment="Left" Margin="10,0,0,222" VerticalAlignment="Bottom"/>
+            <TextBox x:Name="DescriptionBox" Height="69" Margin="10,0,10,148" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
+            <Label Content="Action Taken" HorizontalAlignment="Left" Margin="10,0,0,120" VerticalAlignment="Bottom"/>
+            <TextBox x:Name="ActionBox" Height="23" Margin="10,0,10,92" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
+            <Label Content="Reported" HorizontalAlignment="Left" Margin="10,0,0,64" VerticalAlignment="Bottom"/>
+            <DatePicker x:Name="ReportedAtBox" Margin="10,0,0,35" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="120"/>
+            <Label Content="Completed" HorizontalAlignment="Left" Margin="135,0,0,64" VerticalAlignment="Bottom"/>
+            <DatePicker x:Name="CompletedAtBox" Margin="135,0,0,35" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="116"/>
+            <Label Content="Priority" HorizontalAlignment="Left" Margin="256,0,0,64" VerticalAlignment="Bottom"/>
+            <ComboBox x:Name="PriorityBox" Margin="256,0,10,35" VerticalAlignment="Bottom" Height="24"/>
+            <Button x:Name="ExportButton" Content="Export..." HorizontalAlignment="Right" Margin="0,0,250,10" VerticalAlignment="Bottom" Width="75" Click="ExportButton_Click"/>
+            <Button x:Name="ImportButton" Content="Import..." HorizontalAlignment="Right" Margin="0,0,170,10" VerticalAlignment="Bottom" Width="75" Click="ImportButton_Click"/>
+            <Button x:Name="CreateButton" Content="Create" HorizontalAlignment="Right" Margin="0,0,90,10" VerticalAlignment="Bottom" Width="75" Click="CreateButton_Click"/>
+            <Button x:Name="UpdateButton" Content="Update" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="UpdateButton_Click"/>
+        </Grid>
+        <Grid HorizontalAlignment="Right" Width="355">
+            <Label Content="Statistics" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <Label Content="Total issues:" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="IssueTotalLabel" Content="%" HorizontalAlignment="Left" Margin="137,38,0,0" VerticalAlignment="Top"/>
+            <Label Content="Completed issues:" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="IssueCompletedLabel" Content="%" HorizontalAlignment="Left" Margin="137,61,0,0" VerticalAlignment="Top"/>
+            <Label Content="Active issues:" HorizontalAlignment="Left" Margin="10,84,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="IssueActiveLabel" Content="%" HorizontalAlignment="Left" Margin="137,84,0,0" VerticalAlignment="Top"/>
+            <Label Content="Average issue time:" HorizontalAlignment="Left" Margin="10,107,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="IssueAverageLabel" Content="%" HorizontalAlignment="Left" Margin="137,107,0,0" VerticalAlignment="Top"/>
+            <Label Content="Longest issue time:" HorizontalAlignment="Left" Margin="10,130,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="IssueLongestLabel" Content="%" HorizontalAlignment="Left" Margin="137,130,0,0" VerticalAlignment="Top"/>
+            <Label Content="Sorting and Filtering" HorizontalAlignment="Left" Margin="10,158,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <Button x:Name="ReportedAtSortButton" Content="Sort by Report Date" HorizontalAlignment="Left" Margin="10,186,0,0" VerticalAlignment="Top" Width="335" Click="ReportedAtSortButton_Click"/>
+            <Button x:Name="PrioritySortButton" Content="Sort by Priority" HorizontalAlignment="Left" Margin="10,211,0,0" VerticalAlignment="Top" Width="335" Click="PrioritySortButton_Click"/>
+            <Label Content="Filter by Title:" HorizontalAlignment="Left" Margin="10,236,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="TitleFilterBox" HorizontalAlignment="Left" Height="23" Margin="10,259,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="335" TextChanged="TitleFilterBox_TextChanged"/>
+            <Label Content="Filter by Priority:" HorizontalAlignment="Left" Margin="10,287,0,0" VerticalAlignment="Top"/>
+            <ComboBox x:Name="PriorityFilterBox" Margin="10,310,10,0" VerticalAlignment="Top" Height="24" SelectionChanged="PriorityFilterBox_SelectionChanged"/>
+        </Grid>
+    </Grid>
+</Window>
