@@ -94,26 +94,39 @@ namespace IssueApp.Frontend
         private void Refresh()
         {
             IssueList.Items.Refresh();
-
-            IssueTotalLabel.Content = IssueManager.Issues.Count;
-
-            IssueCompletedLabel.Content = (from issue in IssueManager.Issues
+            IssueTotalLabel.Content = IssueList.ItemsSource.Cast<Issue>().Count();
+            
+            IssueCompletedLabel.Content = (from Issue issue in IssueList.ItemsSource
                                            where issue.CompletedAt != null
                                            select issue).Count().ToString();
 
-            IssueActiveLabel.Content = (from issue in IssueManager.Issues
+            IssueActiveLabel.Content = (from Issue issue in IssueList.ItemsSource
                                         where issue.CompletedAt == null
                                         select issue).Count().ToString();
 
-            IssueAverageLabel.Content = (from issue in IssueManager.Issues
-                                         where issue.CompletedAt != null
-                                         select issue.CompletionTime().Value.Hours).Average().ToString() +
-                                         " hour(s)";
-            
-            IssueLongestLabel.Content = (from issue in IssueManager.Issues
-                                         where issue.CompletedAt != null
-                                         select issue.CompletionTime().Value.Hours).Max().ToString() +
-                                         " hours(s)";
+            try
+            {
+                IssueAverageLabel.Content = (from Issue issue in IssueList.ItemsSource
+                                             where issue.CompletedAt != null
+                                             select issue.CompletionTime().Value.Hours).Average().ToString() +
+                                             " hour(s)";
+            }
+            catch
+            {
+                IssueAverageLabel.Content = "Not Available";
+            }
+
+            try
+            {
+                IssueLongestLabel.Content = (from Issue issue in IssueList.ItemsSource
+                                             where issue.CompletedAt != null
+                                             select issue.CompletionTime().Value.Hours).Max().ToString() +
+                                             " hours(s)";
+            }
+            catch
+            {
+                IssueLongestLabel.Content = "Not Available";
+            }
         }
 
         #endregion
@@ -221,15 +234,19 @@ namespace IssueApp.Frontend
 
             IssuePriority priority = (IssuePriority)selected;
             IssueList.ItemsSource = from issue in IssueManager.Issues
-                                        where issue.Priority == priority
-                                        select issue;
+                                    where issue.Priority == priority
+                                    select issue;
+
+            Refresh();
         }
 
         private void TitleFilterBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             IssueList.ItemsSource = from Issue issue in IssueList.ItemsSource
-                                        where issue.Title.ToLower().Contains(TitleFilterBox.Text.ToLower())
-                                        select issue;
+                                    where issue.Title.ToLower().Contains(TitleFilterBox.Text.ToLower())
+                                    select issue;
+
+            Refresh();
         }
 
         #endregion
