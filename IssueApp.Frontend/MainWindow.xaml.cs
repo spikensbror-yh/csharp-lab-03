@@ -157,9 +157,7 @@ namespace IssueApp.Frontend
             dialog.Filter = "CSV File|*.csv";
 
             if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
-            {
                 return;
-            }
 
             try
             {
@@ -179,9 +177,7 @@ namespace IssueApp.Frontend
             dialog.Filter = "CSV File|*.csv";
 
             if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
-            {
                 return;
-            }
 
             IssueManager.ExportToCSV(dialog.FileName);
         }
