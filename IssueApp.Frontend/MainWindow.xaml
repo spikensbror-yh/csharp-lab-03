@@ -23,9 +23,10 @@
             <Label Content="Action Taken" HorizontalAlignment="Left" Margin="10,0,0,120" VerticalAlignment="Bottom"/>
             <TextBox x:Name="ActionBox" Height="23" Margin="10,0,10,92" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
             <Label Content="Reported" HorizontalAlignment="Left" Margin="10,0,0,64" VerticalAlignment="Bottom"/>
-            <DatePicker x:Name="ReportedAtBox" Margin="10,0,0,35" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="120"/>
+            <TextBox x:Name="ReportedAtBox" Margin="10,0,0,35" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="120" Height="24"/>
             <Label Content="Completed" HorizontalAlignment="Left" Margin="135,0,0,64" VerticalAlignment="Bottom"/>
-            <DatePicker x:Name="CompletedAtBox" Margin="135,0,0,35" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="116"/>
+            <Button x:Name="CompleteButton" Content="Now" HorizontalAlignment="Left" Margin="219,0,0,64" Width="32" Click="CompleteButton_Click" VerticalAlignment="Bottom" Height="Auto"/>
+            <TextBox x:Name="CompletedAtBox" Margin="135,0,0,35" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="116" Height="24"/>
             <Label Content="Priority" HorizontalAlignment="Left" Margin="256,0,0,64" VerticalAlignment="Bottom"/>
             <ComboBox x:Name="PriorityBox" Margin="256,0,10,35" VerticalAlignment="Bottom" Height="24"/>
             <Button x:Name="ExportButton" Content="Export..." HorizontalAlignment="Right" Margin="0,0,250,10" VerticalAlignment="Bottom" Width="75" Click="ExportButton_Click"/>

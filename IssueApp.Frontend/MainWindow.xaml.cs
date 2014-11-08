@@ -58,9 +58,18 @@ namespace IssueApp.Frontend
             issue.Title = title;
             issue.Description = description;
             issue.Action = ActionBox.Text;
-            issue.ReportedAt = ReportedAtBox.SelectedDate;
-            issue.CompletedAt = CompletedAtBox.SelectedDate;
             issue.Priority = (IssuePriority)PriorityBox.SelectedIndex;
+
+            DateTime reported, completed;
+            if (DateTime.TryParse(ReportedAtBox.Text, out reported))
+                issue.ReportedAt = reported;
+            else if (ReportedAtBox.Text == "")
+                issue.ReportedAt = null;
+
+            if (DateTime.TryParse(CompletedAtBox.Text, out completed))
+                issue.CompletedAt = completed;
+            else if (CompletedAtBox.Text == "")
+                issue.CompletedAt = null;
 
             return true;
         }
@@ -76,9 +85,13 @@ namespace IssueApp.Frontend
             TitleBox.Text = issue.Title;
             DescriptionBox.Text = issue.Description;
             ActionBox.Text = issue.Action;
-            ReportedAtBox.SelectedDate = issue.ReportedAt;
-            CompletedAtBox.SelectedDate = issue.CompletedAt;
             PriorityBox.SelectedIndex = (int)issue.Priority;
+
+            if (issue.ReportedAt.HasValue)
+                ReportedAtBox.Text = issue.ReportedAt.Value.ToString();
+
+            if (issue.CompletedAt.HasValue)
+                CompletedAtBox.Text = issue.CompletedAt.Value.ToString();
         }
 
         private void ClearIssueForm()
@@ -86,8 +99,8 @@ namespace IssueApp.Frontend
             TitleBox.Text = "";
             DescriptionBox.Text = "";
             ActionBox.Text = "";
-            ReportedAtBox.SelectedDate = null;
-            CompletedAtBox.SelectedDate = null;
+            ReportedAtBox.Text = null;
+            CompletedAtBox.Text = null;
             PriorityBox.SelectedIndex = 0;
         }
 
@@ -197,6 +210,11 @@ namespace IssueApp.Frontend
             }
 
             IssueManager.ExportToCSV(dialog.FileName);
+        }
+
+        private void CompleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            CompletedAtBox.Text = DateTime.Now.ToString();
         }
 
         #endregion
