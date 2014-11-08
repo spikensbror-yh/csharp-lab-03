@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Issue.cs" />
     <Compile Include="IssueManager.cs" />
+    <Compile Include="IssueMetrics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

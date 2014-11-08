@@ -107,39 +107,13 @@ namespace IssueApp.Frontend
         private void Refresh()
         {
             IssueList.Items.Refresh();
-            IssueTotalLabel.Content = IssueList.ItemsSource.Cast<Issue>().Count();
-            
-            IssueCompletedLabel.Content = (from Issue issue in IssueList.ItemsSource
-                                           where issue.CompletedAt != null
-                                           select issue).Count().ToString();
 
-            IssueActiveLabel.Content = (from Issue issue in IssueList.ItemsSource
-                                        where issue.CompletedAt == null
-                                        select issue).Count().ToString();
-
-            try
-            {
-                IssueAverageLabel.Content = (from Issue issue in IssueList.ItemsSource
-                                             where issue.CompletedAt != null
-                                             select issue.CompletionTime().Value.Hours).Average().ToString() +
-                                             " hour(s)";
-            }
-            catch
-            {
-                IssueAverageLabel.Content = "Not Available";
-            }
-
-            try
-            {
-                IssueLongestLabel.Content = (from Issue issue in IssueList.ItemsSource
-                                             where issue.CompletedAt != null
-                                             select issue.CompletionTime().Value.Hours).Max().ToString() +
-                                             " hours(s)";
-            }
-            catch
-            {
-                IssueLongestLabel.Content = "Not Available";
-            }
+            IssueMetrics.Subjects = IssueList.ItemsSource.Cast<Issue>();
+            IssueTotalLabel.Content = IssueMetrics.Count();
+            IssueCompletedLabel.Content = IssueMetrics.CountCompleted();
+            IssueActiveLabel.Content = IssueMetrics.CountActive();
+            IssueAverageLabel.Content = IssueMetrics.AverageCompletionTimeInHours() + " hour(s)";
+            IssueLongestLabel.Content = IssueMetrics.LongestCompletionTimeInHours() + " hour(s)";
         }
 
         #endregion
