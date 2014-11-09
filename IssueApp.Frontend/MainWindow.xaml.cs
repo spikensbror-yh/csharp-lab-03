@@ -187,6 +187,11 @@ namespace IssueApp.Frontend
             CompletedAtBox.Text = DateTime.Now.ToString();
         }
 
+        private void DeselectButton_Click(object sender, RoutedEventArgs e)
+        {
+            IssueList.SelectedIndex = -1;
+        }
+
         #endregion
 
         #region List Events

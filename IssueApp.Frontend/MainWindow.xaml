@@ -6,6 +6,7 @@
     <Grid>
         <Grid Margin="0,0,355,0">
             <Label Content="Issues" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <Button x:Name="DeselectButton" Content="Deselect" HorizontalAlignment="Right" Margin="0,10,10,0" Width="65" Click="DeselectButton_Click" VerticalAlignment="Top" Height="23"/>
             <ListView x:Name="IssueList" Margin="10,38,10,306" SelectionChanged="IssueList_SelectionChanged">
                 <ListView.View>
                     <GridView>
