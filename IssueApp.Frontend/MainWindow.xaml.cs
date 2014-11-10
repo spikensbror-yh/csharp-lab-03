@@ -89,9 +89,13 @@ namespace IssueApp.Frontend
 
             if (issue.ReportedAt.HasValue)
                 ReportedAtBox.Text = issue.ReportedAt.Value.ToString();
+            else
+                ReportedAtBox.Text = null;
 
             if (issue.CompletedAt.HasValue)
                 CompletedAtBox.Text = issue.CompletedAt.Value.ToString();
+            else
+                CompletedAtBox.Text = null;
         }
 
         private void ClearIssueForm()
